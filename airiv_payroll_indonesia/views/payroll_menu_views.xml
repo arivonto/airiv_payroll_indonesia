@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_airiv_payroll_root"
+                  name="Payroll PPh 21"
+                  sequence="24"
+                  web_icon="airiv_payroll_indonesia,static/description/icon.png"/>
+
+        <menuitem id="menu_airiv_payroll_slip"
+                  name="Slip Gaji Karyawan"
+                  parent="menu_airiv_payroll_root"
+                  sequence="1"
+                  action="action_airiv_payroll"/>
+
+        <menuitem id="menu_airiv_payroll_batch"
+                  name="Batch Penggajian"
+                  parent="menu_airiv_payroll_root"
+                  sequence="2"
+                  action="action_airiv_payslip_batch"/>
+    </data>
+</odoo>

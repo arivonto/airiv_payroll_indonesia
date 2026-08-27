@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_airiv_payroll_tree" model="ir.ui.view">
+            <field name="name">airiv.payroll.list</field>
+            <field name="model">airiv.payroll</field>
+            <field name="arch" type="xml">
+                <list string="Slip Gaji Karyawan">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="ptkp_status"/>
+                    <field name="ter_category" widget="badge"/>
+                    <field name="gross_wage" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="pph21_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="net_wage" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="state" widget="badge"/>
+                    <field name="currency_id" column_invisible="True"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_airiv_payroll_form" model="ir.ui.view">
+            <field name="name">airiv.payroll.form</field>
+            <field name="model">airiv.payroll</field>
+            <field name="arch" type="xml">
+                <form string="Slip Gaji &amp; PPh 21 TER">
+                    <header>
+                        <button name="action_calculate" string="Hitung PPh 21 &amp; BPJS" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_verify" string="Verifikasi HR" type="object" class="btn-secondary" invisible="state != 'calculated'"/>
+                        <button name="action_mark_paid" string="Konfirmasi Bayar" type="object" class="btn-success" invisible="state != 'verified'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,calculated,verified,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title mb-3">
+                            <span class="badge bg-primary text-white mb-2 px-3 py-1">PP 58/2023 PPH 21 TER ENGINE</span>
+                            <h1 style="font-size: 26px; font-weight: 800; color: #0f172a;"><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group string="Karyawan &amp; PTKP">
+                                <field name="employee_id"/>
+                                <field name="nik"/>
+                                <field name="npwp"/>
+                                <field name="ptkp_status"/>
+                                <field name="ter_category"/>
+                            </group>
+                            <group string="Periode Gaji">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="batch_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Komponen Penghasilan &amp; Pajak">
+                                <group>
+                                    <group string="1. Penghasilan Bruto (Earnings)">
+                                        <field name="basic_salary" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="allowance_fixed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="allowance_variable" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="overtime_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="bonus_thr" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </group>
+                                    <group string="2. BPJS Ditanggung Perusahaan">
+                                        <field name="bpjs_jkk_company" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="bpjs_jkm_company" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="bpjs_kes_company" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="gross_wage" widget="monetary" options="{'currency_field': 'currency_id'}" style="font-weight: 800; color: #2563eb;"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="3. Potongan PPh 21 TER">
+                                        <field name="ter_rate"/>
+                                        <field name="pph21_amount" widget="monetary" options="{'currency_field': 'currency_id'}" style="font-weight: 800; color: #dc2626;"/>
+                                    </group>
+                                    <group string="4. Potongan Karyawan &amp; Gaji Bersih">
+                                        <field name="bpjs_jht_employee" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="bpjs_jp_employee" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="bpjs_kes_employee" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="other_deductions" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="total_deductions" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="net_wage" widget="monetary" options="{'currency_field': 'currency_id'}" style="font-weight: 800; font-size: 18px; color: #059669;"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_airiv_payroll" model="ir.actions.act_window">
+            <field name="name">Slip Gaji Karyawan</field>
+            <field name="res_model">airiv.payroll</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>
