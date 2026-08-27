@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_airiv_ebupot_export_form" model="ir.ui.view">
+        <field name="name">airiv.ebupot.export.form</field>
+        <field name="model">airiv.ebupot.export</field>
+        <field name="arch" type="xml">
+            <form string="Export e-Bupot 21/26 &amp; Coretax DJP">
+                <field name="state" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+
+                <div class="alert alert-info" role="alert" invisible="state == 'done'">
+                    <i class="fa fa-info-circle me-1"/>
+                    Wizard ini akan mengekspor data potongan PPh 21 bulanan ke format CSV standar DJP Coretax / e-Bupot 21/26.
+                </div>
+
+                <group invisible="state == 'done'">
+                    <group string="Periode Pajak">
+                        <field name="month"/>
+                        <field name="year"/>
+                    </group>
+                    <group string="Parameter Pajak DJP">
+                        <field name="tax_object_code"/>
+                        <field name="tax_period_type"/>
+                    </group>
+                </group>
+
+                <div invisible="state != 'done'" class="p-3 bg-light rounded border">
+                    <h5 class="text-success mb-3"><i class="fa fa-check-circle me-2"/>File CSV Berhasil Dibuat!</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="mb-1"><strong>Jumlah Bukti Potong:</strong> <field name="total_records" class="fw-bold"/></p>
+                            <p class="mb-1"><strong>Total Penghasilan Bruto:</strong> <field name="total_gross" widget="monetary"/></p>
+                            <p class="mb-0"><strong>Total PPh 21 Dipotong:</strong> <field name="total_tax" widget="monetary" class="text-danger fw-bold"/></p>
+                        </div>
+                        <div class="col-6 text-end">
+                            <p class="mb-2 text-muted">Unduh file ekspor:</p>
+                            <field name="data_file" filename="file_name" widget="binary"/>
+                        </div>
+                    </div>
+                </div>
+
+                <footer>
+                    <button name="action_generate_csv" string="Generate CSV e-Bupot" type="object" class="btn-primary" invisible="state == 'done'"/>
+                    <button string="Tutup" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_airiv_ebupot_export" model="ir.actions.act_window">
+        <field name="name">Export e-Bupot 21/26 (DJP)</field>
+        <field name="res_model">airiv.ebupot.export</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_airiv_ebupot_export_action"
+              name="Export e-Bupot 21/26 CSV"
+              action="action_airiv_ebupot_export"
+              sequence="50"/>
+</odoo>

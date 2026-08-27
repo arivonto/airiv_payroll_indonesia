@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-primary: #714B67;
+            --brand-secondary: #017E84;
+            --brand-dark: #212529;
+            --brand-light: #F8F9FA;
+            --accent-green: #28a745;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333333;
+            background-color: #FFFFFF;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #714B67 0%, #4a2842 100%);
+            color: #FFFFFF;
+            padding: 50px 30px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(113, 75, 103, 0.2);
+        }
+        .badge-compliance {
+            background-color: #017E84;
+            color: #ffffff;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .card-feature {
+            border: 1px solid #E9ECEF;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            height: 100%;
+            background: #FFFFFF;
+        }
+        .card-feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: var(--brand-secondary);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .table-custom th {
+            background-color: #F1F3F5;
+            color: #495057;
+            font-weight: 600;
+            border-bottom: 2px solid #DEE2E6;
+        }
+        .table-custom td {
+            vertical-align: middle;
+        }
+        .stat-badge {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid px-0">
+
+    <!-- HERO HEADER -->
+    <div class="hero-section text-center">
+        <div class="mb-3">
+            <span class="badge-compliance me-2"><i class="fa-solid fa-shield-halved me-1"></i> PP 58/2023 & PMK 168/2023</span>
+            <span class="badge bg-light text-dark px-3 py-2 rounded-pill fw-semibold">Odoo 18.0 Community & Enterprise</span>
+        </div>
+        <h1 class="display-6 fw-bold mb-3">Indonesian Payroll & Tax Compliance</h1>
+        <p class="lead col-lg-9 mx-auto text-light opacity-90 mb-4" style="font-size: 1.15rem;">
+            Fully automated Indonesian Payroll Engine with official <strong>PPh 21 TER</strong> (Category A, B, C) resolution, statutory <strong>BPJS Ketenagakerjaan</strong>, and <strong>BPJS Kesehatan</strong> integration.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <span class="text-light fw-medium"><i class="fa-solid fa-check-circle text-success me-1"></i> Standalone Architecture</span>
+            <span class="text-light fw-medium"><i class="fa-solid fa-check-circle text-success me-1"></i> Accurate Wage Caps</span>
+            <span class="text-light fw-medium"><i class="fa-solid fa-check-circle text-success me-1"></i> Automated Batch Calculation</span>
+        </div>
+    </div>
+
+    <!-- VALUE PROPOSITION GRID -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="card-feature p-4">
+                <div class="feature-icon bg-light text-primary">
+                    <i class="fa-solid fa-calculator" style="color: #714B67;"></i>
+                </div>
+                <h5 class="fw-bold mb-2">PPh 21 TER Engine</h5>
+                <p class="text-muted small mb-0">
+                    Automatic lookup for Category A, B, and C brackets based on employee PTKP status (TK/0-3, K/0-3, K/I/0-3) with 0% to 34% marginal rates.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card-feature p-4">
+                <div class="feature-icon bg-light text-info">
+                    <i class="fa-solid fa-heart-pulse" style="color: #017E84;"></i>
+                </div>
+                <h5 class="fw-bold mb-2">BPJS Kesehatan</h5>
+                <p class="text-muted small mb-0">
+                    Automated 4% company and 1% employee contribution splitting with statutory ceiling enforcement at IDR 12,000,000.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card-feature p-4">
+                <div class="feature-icon bg-light text-warning">
+                    <i class="fa-solid fa-building-shield" style="color: #d39e00;"></i>
+                </div>
+                <h5 class="fw-bold mb-2">BPJS TK Suite</h5>
+                <p class="text-muted small mb-0">
+                    Supports JKK, JKM (0.3%), JHT (3.7% / 2.0%), and Jaminan Pensiun (JP) with statutory cap evaluation at IDR 10,042,300.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card-feature p-4">
+                <div class="feature-icon bg-light text-success">
+                    <i class="fa-solid fa-file-invoice-dollar text-success"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Community Ready</h5>
+                <p class="text-muted small mb-0">
+                    Engineered with native standalone models (<kbd>airiv.payslip</kbd>) ensuring full operation on Odoo Community with zero enterprise dependencies.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALCULATION BENCHMARK & BREAKDOWN -->
+    <div class="card border-0 shadow-sm mb-5">
+        <div class="card-header bg-white border-bottom py-3">
+            <h5 class="fw-bold mb-0 text-dark">
+                <i class="fa-solid fa-chart-pie text-secondary me-2"></i> Statutory Calculation Verification (Example)
+            </h5>
+            <small class="text-muted">Verified calculation output for Base Salary <strong>Rp 12.500.000</strong> with PTKP status <strong>K/0 (Category A)</strong></small>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-custom table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Component Code</th>
+                            <th>Description</th>
+                            <th>Calculation Basis / Rate</th>
+                            <th class="text-end pe-4">Calculated Amount (IDR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">wage_basic</span></td>
+                            <td class="fw-semibold">Gaji Pokok (Base Wage)</td>
+                            <td class="text-muted">Fixed Monthly Contract</td>
+                            <td class="text-end pe-4 fw-bold">Rp 12.500.000</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">bpjs_kes_perusahaan</span></td>
+                            <td>BPJS Kesehatan (Company)</td>
+                            <td class="text-muted">4.0% &times; Min(Gross, Rp 12.000.000)</td>
+                            <td class="text-end pe-4 text-secondary">+ Rp 480.000</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">bpjs_jkk_perusahaan</span></td>
+                            <td>BPJS JKK (Company)</td>
+                            <td class="text-muted">Standard Risk (0.24%)</td>
+                            <td class="text-end pe-4 text-secondary">+ Rp 30.000</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">bpjs_jkm_perusahaan</span></td>
+                            <td>BPJS JKM (Company)</td>
+                            <td class="text-muted">Statutory Rate (0.30%)</td>
+                            <td class="text-end pe-4 text-secondary">+ Rp 37.500</td>
+                        </tr>
+                        <tr class="table-light">
+                            <td class="ps-4 fw-bold">gross_taxable</td>
+                            <td class="fw-bold" colspan="2">Penghasilan Bruto Kena Pajak (Taxable Gross)</td>
+                            <td class="text-end pe-4 fw-bold">Rp 13.047.500</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">bpjs_kes_karyawan</span></td>
+                            <td>BPJS Kesehatan (Employee)</td>
+                            <td class="text-muted">1.0% &times; Min(Gross, Rp 12.000.000)</td>
+                            <td class="text-end pe-4 text-danger">- Rp 120.000</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">bpjs_jht_karyawan</span></td>
+                            <td>BPJS JHT (Employee)</td>
+                            <td class="text-muted">2.0% &times; Base Wage</td>
+                            <td class="text-end pe-4 text-danger">- Rp 250.000</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">bpjs_jp_karyawan</span></td>
+                            <td>BPJS JP (Employee)</td>
+                            <td class="text-muted">1.0% &times; Min(Wage, Rp 10.042.300)</td>
+                            <td class="text-end pe-4 text-danger">- Rp 100.423</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4"><span class="badge bg-light text-dark border">pph21_amount</span></td>
+                            <td>PPh 21 TER (Category A)</td>
+                            <td class="text-muted">4.00% &times; Rp 13.047.500</td>
+                            <td class="text-end pe-4 text-danger">- Rp 521.900</td>
+                        </tr>
+                        <tr style="background-color: #E8F5E9;">
+                            <td class="ps-4 fw-bold text-success" colspan="2"><i class="fa-solid fa-money-bill-wave me-2"></i> TAKE HOME PAY (THP)</td>
+                            <td class="text-muted">Base Wage - Total Deductions</td>
+                            <td class="text-end pe-4 fw-bold text-success fs-6">Rp 11.507.677</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATUTORY MATRIX SPECIFICATION -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="p-4 bg-light rounded-3 h-100 border">
+                <h5 class="fw-bold mb-3"><i class="fa-solid fa-table-cells me-2 text-primary"></i> PPh 21 TER Matrix Categorization</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><span class="badge bg-secondary me-2">Category A</span> <strong>TK/0</strong> (54M), <strong>TK/1</strong> (58.5M), <strong>K/0</strong> (58.5M)</li>
+                    <li class="mb-2"><span class="badge bg-secondary me-2">Category B</span> <strong>TK/2</strong>, <strong>TK/3</strong>, <strong>K/1</strong>, <strong>K/2</strong> (63M - 72M)</li>
+                    <li class="mb-0"><span class="badge bg-secondary me-2">Category C</span> <strong>K/3</strong> (72M) & Married Separate Tax Entities</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 bg-light rounded-3 h-100 border">
+                <h5 class="fw-bold mb-3"><i class="fa-solid fa-sliders me-2 text-primary"></i> Configurable Payroll Parameters</h5>
+                <p class="text-muted small mb-3">
+                    Statutory ceilings and contribution percentages are centralized in model constants, allowing immediate updates when national regulations change.
+                </p>
+                <div class="d-flex gap-2">
+                    <span class="stat-badge">DJP Coretax Ready</span>
+                    <span class="stat-badge">IDR Standard Formatting</span>
+                    <span class="stat-badge">WIB Timezone</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER / SUPPORT -->
+    <div class="text-center py-4 border-top">
+        <h6 class="fw-bold text-dark mb-1">Developed by Riv Cloud Management</h6>
+        <p class="text-muted small mb-0">Technical Support & Customization: <a href="mailto:arivonto@gmail.com" class="text-decoration-none fw-semibold">arivonto@gmail.com</a></p>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_airiv_payslip,airiv.payslip,model_airiv_payslip,base.group_user,1,1,1,1
+access_airiv_payslip_batch,airiv.payslip.batch,model_airiv_payslip_batch,base.group_user,1,1,1,1
+access_airiv_ebupot_export,airiv.ebupot.export,model_airiv_ebupot_export,base.group_user,1,1,1,1
