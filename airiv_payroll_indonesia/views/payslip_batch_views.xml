@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_airiv_payslip_batch_tree" model="ir.ui.view">
+            <field name="name">airiv.payslip.batch.list</field>
+            <field name="model">airiv.payslip.batch</field>
+            <field name="arch" type="xml">
+                <list string="Batch Penggajian Karyawan">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="payslip_count"/>
+                    <field name="total_gross" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="total_pph21" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="total_net" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="state" widget="badge"/>
+                    <field name="currency_id" column_invisible="True"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_airiv_payslip_batch_form" model="ir.ui.view">
+            <field name="name">airiv.payslip.batch.form</field>
+            <field name="model">airiv.payslip.batch</field>
+            <field name="arch" type="xml">
+                <form string="Batch Penggajian Karyawan">
+                    <header>
+                        <button name="action_generate_payslips" string="Generate Slip Gaji Karyawan" type="object" class="btn-primary" invisible="state not in ('draft', 'computed')"/>
+                        <button name="action_approve" string="Setujui Batch" type="object" class="btn-secondary" invisible="state != 'computed'"/>
+                        <button name="action_mark_paid" string="Konfirmasi Bayar Transfer" type="object" class="btn-success" invisible="state != 'approved'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,computed,approved,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title mb-3">
+                            <span class="badge bg-primary text-white mb-2 px-3 py-1">PPH 21 TER &amp; BPJS BATCH ENGINE</span>
+                            <h1 style="font-size: 26px; font-weight: 800; color: #0f172a;"><field name="name" placeholder="misal: Gaji Agustus 2026"/></h1>
+                        </div>
+                        <group>
+                            <group string="Periode Penggajian">
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                            <group string="Ringkasan Finansial Batch (IDR)">
+                                <field name="payslip_count"/>
+                                <field name="total_gross" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_pph21" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_bpjs_tk" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_bpjs_kes" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="total_net" widget="monetary" options="{'currency_field': 'currency_id'}" style="font-weight: 800; color: #059669;"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Daftar Slip Gaji Individu">
+                                <field name="payslip_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="employee_id"/>
+                                        <field name="gross_wage" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="ter_category" widget="badge"/>
+                                        <field name="pph21_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="net_wage" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="state" widget="badge"/>
+                                        <field name="currency_id" column_invisible="True"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_airiv_payslip_batch" model="ir.actions.act_window">
+            <field name="name">Batch Penggajian</field>
+            <field name="res_model">airiv.payslip.batch</field>
+            <field name="view_mode">list,form</field>
+        </record>
+    </data>
+</odoo>
