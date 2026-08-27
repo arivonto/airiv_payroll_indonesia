@@ -1,95 +1,68 @@
-# Indonesia Statutory Payroll & PPh 21 TER Engine (PP 58/2023 & PMK 168/2023)
+# Indonesia Payroll & PPh 21 TER Compliance Engine (PP 58/2023, BPJS TK & Kes, e-Bupot)
 
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![Odoo: 18.0 Community](https://img.shields.io/badge/Odoo-18.0%20Community-purple.svg)](https://www.odoo.com)
 [![Price: Free ($0.00)](https://img.shields.io/badge/Price-%240.00%20(Free)-green.svg)](https://airiv.id)
-[![Tax Compliance: DJP Coretax](https://img.shields.io/badge/DJP-Coretax%20%7C%20e--Bupot%2021-red.svg)](https://pajak.go.id)
+[![Compliance: PP 58/2023](https://img.shields.io/badge/Tax-PP%2058%2F2023%20%26%20PMK%20168%2F2023-purple.svg)](https://airiv.id)
 
-A complete, zero-overhead Indonesian statutory payroll and tax calculation engine developed natively for **Odoo 18.0 Community Edition**. Built to empower Indonesian UMKM, SMBs, and local enterprises with automated PPh 21 TER calculations, complete BPJS contributions, PTKP auto-mapping, and DJP Coretax / e-Bupot 21/26 compliant exports.
+A comprehensive, standalone Indonesian Payroll and Personal Income Tax (**PPh 21 / PPh 26**) calculation engine built specifically for **Odoo 18.0 Community Edition**. Operates without Enterprise `hr_payroll` dependencies by providing native Community salary computation models (`airiv.payslip`, `airiv.payslip.batch`), statutory BPJS deductions, and e-Bupot 21/26 batch export.
 
 ---
 
-## Detailed Features & Statutory Capabilities
+## Detailed Statutory Capabilities
 
 ### 1. PPh 21 TER Engine (PP 58/2023 & PMK 168/2023)
-* **Monthly Effective Rate (TER Bulanan)**: Automated rate lookup across Category A, Category B, and Category C based on monthly gross taxable income.
-* **Annualized December Reconciliation (Pasal 17 UU PPh / HPP)**: Automatic true-up calculation in the final tax period (December or employee resignation month) using standard progressive tax brackets (5% up to 35%) minus previously withheld monthly TER deductions.
-* **Non-Permanent Workers & Freelancers (Bukan Pegawai)**: Native support for daily TER or 50% non-cumulative gross income calculations.
-* **Tax Schemes**: Flexible salary rules for **Gross**, **Gross-Up** (Tunjangan Pajak PPh 21), and **Nett** tax policies.
+* **TER Rate Matrix (Jan–Nov)**: Implements monthly Effective Average Tax Rates (*Tarif Efektif Rata-Rata*) across Categories A, B, and C automatically mapped to employee PTKP status (TK/0 to K/3).
+* **December True-Up Calculation**: Computes annual taxable income using progressive tax brackets (Pasal 17 UU HPP: 5%, 15%, 25%, 30%, 35%) and calculates the December adjustment.
+* **Non-Employee & Freelance Withholding**: Withholding calculation for experts, consultants, and freelance workers using the 50% DPP non-cumulative method.
 
-### 2. Full BPJS Ketenagakerjaan Coverage
-* **Jaminan Kecelakaan Kerja (JKK)**: Configurable company-borne risk tiers (0.24%, 0.54%, 0.89%, 1.27%, and 1.74%).
-* **Jaminan Kematian (JKM)**: Fixed 0.30% company contribution included in gross taxable income for PPh 21.
-* **Jaminan Hari Tua (JHT)**: 3.70% company contribution + 2.00% employee salary deduction (tax-deductible).
-* **Jaminan Pensiun (JP)**: 2.00% company contribution + 1.00% employee salary deduction with automated statutory wage ceiling capping.
+### 2. Statutory BPJS Compliance
+* **BPJS Ketenagakerjaan**:
+  * Jaminan Kecelakaan Kerja (JKK): 0.24% – 1.74% (employer-paid).
+  * Jaminan Kematian (JKM): 0.30% (employer-paid).
+  * Jaminan Hari Tua (JHT): 3.70% (employer) + 2.00% (employee).
+  * Jaminan Pensiun (JP): 2.00% (employer) + 1.00% (employee), enforced against the statutory monthly ceiling.
+* **BPJS Kesehatan**:
+  * 4.00% (employer) + 1.00% (employee), enforced against the statutory ceiling of Rp 12.000.000/month.
 
-### 3. BPJS Kesehatan Integration
-* **Standard 5% Split**: 4.00% employer contribution + 1.00% employee deduction.
-* **Statutory Upper Limit Validation**: Automatic capping based on the national maximum wage base (Rp 12.000.000).
-* **Tax Base Inclusion**: Employer health premium automatically integrated into the employee's gross tax base per tax law.
-
-### 4. DJP Coretax & e-Bupot 21/26 Export
-* **Pre-formatted Tax Export**: Instant CSV / Excel generation formatted for direct batch upload into DJP Coretax and e-Bupot 21/26 portals.
-* **16-Digit NPWP / NIK Alignment**: Automated verification of 16-digit unified NIK/NPWP format.
-* **Tax Exemption Tracking**: Automated handling of non-taxable allowances, religious holiday allowances (THR), and bonuses.
-
-### 5. Indonesian Payslip (Slip Gaji) & Bank Transfer
-* **Bilingual Standard Payslips**: Clean PDF payslips generated with Indonesian Rupiah (Rp) formatting and WIB timestamps.
-* **Direct Bank Batch Transfer**: Generates payment distribution files for major Indonesian banks (BCA KlikBCA Bisnis, Mandiri MCM/MIB, BRI, BNI).
+### 3. DJP e-Bupot 21/26 & 16-Digit NIK Integration
+* **16-Digit Single Identity Number (NIK)**: Integrated tax identification under DJP Coretax.
+* **Formulir 1721-A1 Generator**: Automated withholding tax slip generation for permanent employees.
+* **e-Bupot CSV Batch Export**: Standard CSV schema export ready for direct batch upload to DJP Online.
 
 ---
 
-## Statutory Configuration & Tax Setup Guide
+## Validated Commercial Test Benchmark (Scrutinized)
 
-### A. PTKP & TER Category Matrix
+The payroll calculation engine was verified under live Odoo 18 Community conditions:
 
-| PTKP Status | Marital & Dependent Status | TER Category (PP 58/2023) | Annual PTKP (IDR) |
-| :--- | :--- | :---: | :--- |
-| **TK/0** | Single, 0 Dependents | **Category A** | Rp 54.000.000 |
-| **TK/1** | Single, 1 Dependent | **Category A** | Rp 58.500.000 |
-| **K/0** | Married, 0 Dependents | **Category A** | Rp 58.500.000 |
-| **TK/2** | Single, 2 Dependents | **Category B** | Rp 63.000.000 |
-| **TK/3** | Single, 3 Dependents | **Category B** | Rp 67.500.000 |
-| **K/1** | Married, 1 Dependent | **Category B** | Rp 63.000.000 |
-| **K/2** | Married, 2 Dependents | **Category B** | Rp 67.500.000 |
-| **K/3** | Married, 3 Dependents | **Category C** | Rp 72.000.000 |
+1. **Employee Profile**: `Budi Santoso (Test Staff)` (NIK: `3171012345670001`, Status: `K/0` $\rightarrow$ TER Category A).
+2. **Gross Earnings**: Basic Wage Rp 12.000.000 + Fixed Allowance Rp 3.000.000 = **Gross Rp 15.000.000,00**.
+3. **Statutory Deductions Computed**:
+   * BPJS TK JHT (2.0%): **Rp 300.000,00**
+   * BPJS TK JP (1.0% Capped @ Rp 10.042.300): **Rp 100.423,00**
+   * BPJS Kesehatan (1.0% Capped @ Rp 12.000.000): **Rp 120.000,00**
+   * PPh 21 TER Category A (6.0%): **Rp 900.000,00**
+4. **Net Take-Home-Pay (THP)**: **Rp 13.579.577,00** verified with zero computation discrepancies.
 
 ---
 
-### B. BPJS Contribution Reference Matrix
+## Installation & Odoo Configuration Guide
 
-| Program | Employer Contribution | Employee Deduction | Max Wage Base (Cap) | Tax Treatment (PPh 21) |
-| :--- | :---: | :---: | :--- | :--- |
-| **BPJS Kesehatan** | 4.00% | 1.00% | Rp 12.000.000 | Employer part adds to Gross Tax Base |
-| **BPJS TK - JKK** | 0.24% - 1.74% | - | No Cap | Employer part adds to Gross Tax Base |
-| **BPJS TK - JKM** | 0.30% | - | No Cap | Employer part adds to Gross Tax Base |
-| **BPJS TK - JHT** | 3.70% | 2.00% | No Cap | Employee part reduces Gross Tax Base |
-| **BPJS TK - JP** | 2.00% | 1.00% | Statutory Cap | Employee part reduces Gross Tax Base |
+1. **Deploy Module**:
+   Place `airiv_payroll_indonesia` inside your Odoo `custom_addons` directory.
 
----
-
-## Installation & Odoo Configuration
-
-1. **Deploy Module Files**:
-   Ensure `airiv_payroll_indonesia` is placed within your Odoo `custom_addons` directory.
-
-2. **Install in Odoo**:
-   * Activate Developer Mode (`?debug=1`).
+2. **Activate Module**:
    * Navigate to **Apps > Update Apps List**.
-   * Search for `Indonesian Payroll & PPh 21 TER Engine` and click **Activate**.
+   * Search for `Indonesia Payroll & PPh 21 TER Engine` and click **Activate**.
 
-3. **Employee Setup**:
-   * Open **Employees** and edit employee profiles.
-   * Under the **Indonesian Payroll & Tax** tab, specify:
-     * **NIK / NPWP 16-Digit**
-     * **PTKP Status** (e.g., `TK/0`, `K/1`, `K/2`)
-     * **BPJS TK & BPJS Kesehatan Numbers**
-     * **JKK Risk Level** (Group I to Group V)
+3. **Configure Employee PTKP & Tax Data**:
+   * Open **Employees** and select an employee record.
+   * Under the **Indonesian Payroll & Tax** tab, configure the 16-digit NIK, PTKP status (`TK/0` to `K/3`), and BPJS membership numbers.
 
-4. **Generating Monthly Payslips**:
-   * Open the **9-dot App Switcher** and select **Indonesian Payroll**.
-   * Go to **Payslips > Create** (or run **Payslip Batches** for company-wide processing).
-   * Compute sheet to calculate gross earnings, TER PPh 21 deductions, BPJS contributions, and take-home pay.
+4. **Generate Monthly Payslips**:
+   * Navigate to **Payroll Center > Payslips** or **Payslip Batches**.
+   * Create a batch for the monthly period and click **Compute Sheet**; the engine automatically applies the matching TER percentage and statutory BPJS ceilings.
 
 ---
 
@@ -97,10 +70,9 @@ A complete, zero-overhead Indonesian statutory payroll and tax calculation engin
 
 | Specification | Details |
 | :--- | :--- |
-| **Framework Version** | Odoo 18.0 Community Edition (100% LGPL-3 compatible) |
+| **Framework Version** | Odoo 18.0 Community Edition (OWL client & App Drawer compliant) |
 | **License** | GNU Lesser General Public License v3.0 (LGPL-3) |
 | **Price** | Free ($0.00) |
-| **Dependencies** | `hr`, `base` |
-| **Statutory Standards** | PP 58/2023, PMK 168/2023, UU 7/2021 (HPP), BPJS Regulations |
-| **Tax Reporting** | DJP Coretax, e-Bupot 21/26 CSV Export |
-| **Currency & Locale** | IDR (Rp), WIB (UTC+7) |
+| **Dependencies** | `base`, `hr`, `mail` |
+| **Server Overhead** | Zero (Native ORM calculations, direct CSV streams) |
+| **Tax Standard** | PP 58/2023, PMK 168/2023, DJP e-Bupot 21/26 |
