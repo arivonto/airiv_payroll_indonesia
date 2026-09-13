@@ -2,9 +2,10 @@
 <odoo>
     <data>
         <menuitem id="menu_airiv_payroll_root"
-                  name="Payroll PPh 21"
+                  name="AIRIV Payroll PPh 21"
+                  action="airiv_os_core.action_airiv_launchpad_payroll"
                   sequence="24"
-                  web_icon="airiv_payroll_indonesia,static/description/icon.png"/>
+                  web_icon="airiv_payroll_indonesia,static/description/airiv_store_icon_128.png"/>
 
         <menuitem id="menu_airiv_payroll_slip"
                   name="Slip Gaji Karyawan"

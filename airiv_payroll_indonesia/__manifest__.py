@@ -13,13 +13,16 @@ Modul Penggajian dan PPh 21 Indonesia Terintegrasi Sesuai PP 58/2023 & PMK 168/2
 """,
     'author': 'Riv Cloud Management',
     'website': 'https://airiv.id',
+    'url': 'https://github.com/arivonto/airiv_payroll_indonesia/blob/18.0/static/description/index.html',
     'license': 'LGPL-3',
+    'images': ['static/description/banner.png', 'static/description/icon.png'],
     'price': 0.0,
     'currency': 'EUR',
     'depends': [
         'base',
         'hr',
-        'mail'
+        'mail',
+        'airiv_os_core',
     ],
     'data': [
         'security/ir.model.access.csv',

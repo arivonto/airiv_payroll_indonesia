@@ -2,7 +2,7 @@
 {
     'name': 'AIRIV Payroll Indonesia - PPh 21 TER & BPJS Calculation Engine',
     'version': '18.0.1.0.0',
-    'category': 'Human Resources/Payroll',
+    'category': 'AIRIV/People & Payroll',
     'summary': 'Kalkulasi Otomatis PPh 21 Tarif Efektif Rata-rata (TER PP 58/2023) & BPJS Ketenagakerjaan/Kesehatan',
     'description': """
 Modul Penggajian dan PPh 21 Indonesia Terintegrasi Sesuai PP 58/2023 & PMK 168/2023:
@@ -13,7 +13,9 @@ Modul Penggajian dan PPh 21 Indonesia Terintegrasi Sesuai PP 58/2023 & PMK 168/2
 """,
     'author': 'Riv Cloud Management',
     'website': 'https://airiv.id',
+    'url': 'https://github.com/arivonto/airiv_payroll_indonesia/blob/18.0/static/description/index.html',
     'license': 'LGPL-3',
+    'images': ['static/description/banner.png', 'static/description/icon.png'],
     'price': 0.0,
     'currency': 'EUR',
     'depends': [

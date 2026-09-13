@@ -23,7 +23,12 @@ class HrEmployee(models.Model):
     allowance_meal = fields.Monetary(string="Tunjangan Makan", default=0.0, tracking=True)
     
     # Currency for monetary fields
-    currency_id = fields.Many2one('res.currency', string="Mata Uang", default=lambda self: self.env.company.currency_id)
+    currency_id = fields.Many2one(
+        'res.currency',
+        string="Mata Uang",
+        related='company_id.currency_id',
+        readonly=True,
+    )
 
     # BPJS Participation Flags
     ikut_jp = fields.Boolean(string="Ikut BPJS Jaminan Pensiun (JP)", default=True, tracking=True)

@@ -4,7 +4,7 @@
         <menuitem id="menu_airiv_payroll_root"
                   name="Payroll PPh 21"
                   sequence="24"
-                  web_icon="airiv_payroll_indonesia,static/description/icon.png"/>
+                  web_icon="airiv_payroll_indonesia,static/description/airiv_store_icon_128.png"/>
 
         <menuitem id="menu_airiv_payroll_slip"
                   name="Slip Gaji Karyawan"
