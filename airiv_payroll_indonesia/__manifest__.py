@@ -11,7 +11,7 @@ Modul Penggajian dan PPh 21 Indonesia Terintegrasi Sesuai PP 58/2023 & PMK 168/2
 - Batch Penggajian (Payslip Batch) dengan Rekonsiliasi Finansial.
 - Export Bukti Potong 1721-A1 & Rekap Gaji Transfer Bank.
 """,
-    'author': 'Riv Cloud Management',
+    'author': 'AIRIV',
     'website': 'https://airiv.id',
     'url': 'https://github.com/arivonto/airiv_payroll_indonesia/blob/18.0/static/description/index.html',
     'license': 'LGPL-3',
